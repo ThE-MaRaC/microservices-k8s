@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: user-management-service
+  name: user-management-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: user-management-service
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: user-management-service
+    spec:
+      containers:
+      - env:
+        - name: EUREKA_DISCOVERY_SERVICE_HOSTNAME
+          value: eureka-discovery-service
+        image: mariobros/user-management-service:0.0.1-SNAPSHOT
+        imagePullPolicy: ""
+        name: user-management-service
+        ports:
+        - containerPort: 8080
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

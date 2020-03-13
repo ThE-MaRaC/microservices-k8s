@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: zuul-gateway-service
+    spring-boot: "true"
+  name: zuul-gateway-service
+spec:
+  type: NodePort
+  ports:
+  - name: "8765"
+    port: 8765
+    targetPort: 8765
+  selector:
+    io.kompose.service: zuul-gateway-service
+status:
+  loadBalancer: {}

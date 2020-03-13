@@ -1,0 +1,34 @@
+server:
+  port: 8765
+
+spring:
+  cloud:
+    kubernetes:
+      discovery:
+        all-namespaces: true
+        service-labels:
+          spring-boot: true
+
+zuul:
+  prefix: /api
+  routes:
+    user:
+      path: /user/**
+      service-id: user-management-service
+      url: http://user-management-service:8080
+      retryable: true
+  add-proxy-headers: true
+  sensitive-headers:
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    ROOT: INFO

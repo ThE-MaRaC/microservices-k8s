@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: zuul-gateway-service
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+      reload:
+        enabled: true

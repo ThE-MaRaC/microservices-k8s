@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: zuul-gateway-service
+  name: zuul-gateway-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: zuul-gateway-service
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: zuul-gateway-service
+    spec:
+      containers:
+      - env:
+        - name: EUREKA_DISCOVERY_SERVICE_HOSTNAME
+          value: eureka-discovery-service
+        image: mariobros/zuul-gateway-service:0.0.1-SNAPSHOT
+        imagePullPolicy: ""
+        name: zuul-gateway-service
+        ports:
+        - containerPort: 8765
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

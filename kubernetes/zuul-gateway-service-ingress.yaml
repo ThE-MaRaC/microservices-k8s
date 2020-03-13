@@ -1,0 +1,19 @@
+apiVersion: extensions/v1
+kind: Ingress
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: zuul-gateway-service
+  name: zuul-gateway-service
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - backend:
+          serviceName: zuul-gateway-service
+          servicePort: 8765
+        path: /api

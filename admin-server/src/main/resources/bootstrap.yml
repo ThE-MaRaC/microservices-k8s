@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: admin-server
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+      reload:
+        enabled: true

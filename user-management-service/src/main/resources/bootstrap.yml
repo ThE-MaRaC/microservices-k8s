@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: user-management-service
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+      reload:
+        enabled: true
